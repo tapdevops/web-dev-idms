@@ -143,6 +143,8 @@ EXPOSE 80
 ADD ./docker-utility/run-httpd.sh /run-httpd.sh
 RUN chmod -v +x /run-httpd.sh
 CMD [ "/run-httpd.sh" ]
+CMD echo "ServerName localhost" >> /etc/apache2/apache2.conf
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 RUN rm -rf /run/httpd/* /tmp/httpd*
 RUN /usr/sbin/apachectl -DFOREGROUNDRUN 
 
