@@ -140,6 +140,7 @@ RUN ( cd /var/www/html/Web-IDMS; php artisan optimize )
 # 9. Starting Apache Server
 # -------------------------------------------------------------------------------------
 EXPOSE 80
+FROM php:7.0-apache
 CMD echo "ServerName localhost" >> /etc/apache2/apache2.conf
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 ADD ./docker-utility/run-httpd.sh /run-httpd.sh
@@ -147,4 +148,3 @@ RUN chmod -v +x /run-httpd.sh
 CMD [ "/run-httpd.sh" ]
 RUN rm -rf /run/httpd/* /tmp/httpd*
 RUN /usr/sbin/apachectl -DFOREGROUNDRUN 
-
